@@ -1,0 +1,81 @@
+{
+    "pose_backends": [
+        {
+            "name": "mediapipe",
+            "params": {
+                "detect_faces": false,
+                "detect_face_meshs": false,
+                "detect_hands": true,
+                "detect_poses": false,
+                "detect_holistic": false,
+                "use_gpu": true,
+                "min_detection_confidence": 0.2
+            }
+        }
+    ],
+    "cameras": {
+        "input_paths": [
+            "/dev/video10"
+        ],
+        "flip_camera": false,
+        "params": {
+            "/dev/video10": {
+                "resolution": [
+                    640,
+                    480
+                ],
+                "framerate": 60,
+                "api": "pyrealsense2",
+                "align_frames": false
+            }
+        },
+        "intrinsics": {}
+    },
+    "dimmaps": {
+        "posecafe": {
+            "calibration_matrices": [
+                [[ 1.0, 0.0, 0.0, 0.0],
+                [ 0.0, 1.0, 0.0, 0.0],
+                [ 0.0, 0.0, 1.0, 0.0],
+                [ 0.0, 0.0, 0.0, 1.0]]
+            ],
+            "color_intrinsics": {
+                "width": 640,
+                "height": 480,
+                "fx": 603.501,
+                "fy": 602.206,
+                "ppx": 327.26,
+                "ppy": 232.836
+                
+            },
+            "depth_intrinsics": {
+                "width": 640,
+                "height": 480,
+                "fx": 381.135,
+                "fy": 381.135,
+                "ppx": 317.698,
+                "ppy": 238.231
+                
+            },
+            "color_to_depth": [
+                [[0.99976, -0.0217288, -0.00293085],
+                [0.0217112, 0.999747, -0.00589662],
+                [0.00305823, 0.00583157, 0.999978],
+                [0.0149626, -3.40997e-05, 0.000375843]]
+            ]
+        }
+    },
+    "filters": {
+        "posecafefilter": {
+            "two_dimensional": false,
+            "three_dimensional": true
+        }
+    },
+    "outputs": {
+        "osc_glsl": {
+            "destinations": {
+                "localhost": [9000, 8000]
+            }
+        }
+    }
+}
